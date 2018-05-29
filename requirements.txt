@@ -1,4 +1,4 @@
-markdown2>=2.3.6
+misaka>=2.1.0
 Pygments>=2.2.0
 -e git+https://github.com/edx/xblock-utils.git@v1.0.5#egg=xblock-utils==v1.0.5
 -e .

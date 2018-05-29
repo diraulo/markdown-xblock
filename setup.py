@@ -21,22 +21,22 @@ def package_data(pkg, roots):
 
 
 setup(
-    name='markdown-xblock',
+    name='markdown-xblock-ca',
     version='0.1',
     description='markdown XBlock',
     packages=[
-        'mdown',
+        'mdown-ca',
     ],
     install_requires=[
         'XBlock',
         'xblock-utils',
-        'markdown2>=2.3.0',
+        'misaka>=2.1.0',
         'Pygments>=2.0.1'
     ],
     entry_points={
         'xblock.v1': [
-            'mdown = mdown:MarkdownXBlock',
+            'mdown-ca = mdown:MarkdownXBlock',
         ]
     },
-    package_data=package_data("mdown", ["static", "public"]),
+    package_data=package_data("mdown-ca", ["static", "public"]),
 )

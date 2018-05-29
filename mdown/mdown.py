@@ -1,5 +1,5 @@
 import logging
-import markdown2
+import misaka
 import textwrap
 
 from xblock.core import XBlock
@@ -31,36 +31,33 @@ class MarkdownXBlock(StudioEditableXBlockMixin, XBlock):
         multiline_editor=True,
         scope=Scope.content)
     extras = List(
-        help="Markdown2 module extras to turn on for the instance.",
+        help="Misaka module extras to turn on for the instance.",
         list_style="set",
         list_values_provider=lambda _: [
-            # Taken from https://github.com/trentm/python-markdown2/wiki/Extras
-            {"display_name": "Code Friendly", "value": "code-friendly"},
-            {"display_name": "Fenced Code Blocks", "value": "fenced-code-blocks"},
+            # Taken from http://misaka.61924.nl/#extensions
+            {"display_name": "Tables", "value": "tables"},
+            {"display_name": "Fenced Code Blocks", "value": "fenced-code"},
             {"display_name": "Footnotes", "value": "footnotes"},
-            {"display_name": "GFM Tables", "value": "tables"},
-            {"display_name": "File Variables", "value": "use-file-vars"},
-            {"display_name": "Cuddled lists", "value": "cuddled-lists"},
-            {"display_name": "Google Code Wiki Tables", "value": "wiki-tables"},
-            {"display_name": "Header IDs", "value": "header-ids"},
-            {"display_name": "HTML classes", "value": "html-classes"},
-            {"display_name": "Link patterns", "value": "link-patterns"},
-            {"display_name": "Markdown in HTML", "value": "markdown-in-html"},
-            {"display_name": "Metadata", "value": "metadata"},
-            {"display_name": "No Follow", "value": "nofollow"},
-            {"display_name": "Pyshell", "value": "pyshell"},
-            {"display_name": "SmartyPants", "value": "smarty-pants"},
-            {"display_name": "Spoiler Block", "value": "spoiler"},
-            {"display_name": "Table of Contents", "value": "toc"},
-            {"display_name": "Twitter Tag Friendly", "value": "tag-friendly"},
-            {"display_name": "XML", "value": "xml"},
+            {"display_name": "Autolinks", "value": "autolink"},
+            {"display_name": "Strikethrough", "value": "strikethrough"},
+            {"display_name": "Underline", "value": "underline"},
+            {"display_name": "Highlight", "value": "highlight"},
+            {"display_name": "Quotes", "value": "quote"},
+            {"display_name": "Superscript", "value": "superscript"},
+            {"display_name": "Math", "value": "math"},
+            {"display_name": "No Intra Emphasis", "value": "no-intra-emphasis"},
+            {"display_name": "Space Headers", "value": "space-headers"},
+            {"display_name": "Math Explicit", "value": "math-explicit"},
+            {"display_name": "Disable Indented Code",
+                "value": "disable-indented-code"}
         ],
         default=[
-            "code-friendly",
-            "fenced-code-blocks",
+            "tables"
+            "fenced-code",
             "footnotes",
-            "tables",
-            "use-file-vars",
+            "autolink",
+            "strikethrough",
+            "math"
         ],
         scope=Scope.content)
 
@@ -122,15 +119,16 @@ class MarkdownXBlock(StudioEditableXBlockMixin, XBlock):
 
         html_content = ""
         if content:
-            html_content = markdown2.markdown(content, extras=self.extras)
+            html_content = misaka.html(content, extras=self.extras)
 
         # Render the HTML template
         context = {'content': html_content}
         html = loader.render_template('templates/main.html', context)
         frag = Fragment(html)
 
-        if "fenced-code-blocks" in self.extras:
-            frag.add_css_url(self.runtime.local_resource_url(self, 'public/css/pygments.css'))
+        if "fenced-code" in self.extras:
+            frag.add_css_url(self.runtime.local_resource_url(
+                self, 'public/css/pygments.css'))
 
         return frag
 
