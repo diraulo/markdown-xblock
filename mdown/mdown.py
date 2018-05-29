@@ -119,7 +119,7 @@ class MarkdownXBlock(StudioEditableXBlockMixin, XBlock):
 
         html_content = ""
         if content:
-            html_content = misaka.html(content, extras=self.extras)
+            html_content = misaka.html(content, extensions=self.extras)
 
         # Render the HTML template
         context = {'content': html_content}
