@@ -25,7 +25,7 @@ setup(
     version='0.1',
     description='markdown XBlock',
     packages=[
-        'mdown_ca',
+        'mdown-ca',
     ],
     install_requires=[
         'XBlock',
@@ -35,8 +35,8 @@ setup(
     ],
     entry_points={
         'xblock.v1': [
-            'mdown_ca = mdown:MarkdownCAXBlock',
+            'mdown-ca = mdown:MarkdownCAXBlock',
         ]
     },
-    package_data=package_data("mdown_ca", ["static", "public"]),
+    package_data=package_data("mdown-ca", ["static", "public"]),
 )
