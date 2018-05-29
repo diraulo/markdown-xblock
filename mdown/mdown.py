@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 loader = ResourceLoader(__name__)
 
 
-class MarkdownCAXBlock(StudioEditableXBlockMixin, XBlock):
+class MarkdownXBlock(StudioEditableXBlockMixin, XBlock):
     """
     Displays markdown content as HTML
 
@@ -96,7 +96,7 @@ class MarkdownCAXBlock(StudioEditableXBlockMixin, XBlock):
 
     def student_view(self, context=None):
         """
-        The student view of the MarkdownCAXBlock.
+        The student view of the MarkdownXBlock.
 
         """
         if self.filename:
@@ -136,7 +136,7 @@ class MarkdownCAXBlock(StudioEditableXBlockMixin, XBlock):
     def workbench_scenarios():
         """A canned scenario for display in the workbench."""
         return [
-            ("MarkdownCAXBlock",
+            ("MarkdownXBlock",
              """<vertical_demo>
                 <mdown>
                     # This is an h1
@@ -156,7 +156,7 @@ class MarkdownCAXBlock(StudioEditableXBlockMixin, XBlock):
                     ```python
                     from xblock.core import XBlock
 
-                    class MarkdownCAXBlock(XBlock):
+                    class MarkdownXBlock(XBlock):
                         "This is a colored fence block."
                     ```
 
