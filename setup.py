@@ -21,8 +21,8 @@ def package_data(pkg, roots):
 
 
 setup(
-    name='markdown-xblock-ca',
-    version='0.1',
+    name='markdown-ca-xblock',
+    version='0.0.1',
     description='Markdown CA XBlock',
     packages=[
         'mdown_ca',

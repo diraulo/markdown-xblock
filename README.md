@@ -14,7 +14,7 @@ virtualenv.
 1. Install it via pip:
 
     ```
-    $ sudo /edx/bin/pip.edxapp install -e git+https://github.com/hastexo/markdown-xblock.git@master#egg=markdown-xblock
+    $ sudo /edx/bin/pip.edxapp install -e git+https://github.com/CraftAcademyLabs/markdown-xblock.git@mdown_ca#egg=markdown-ca-xblock
     ```
 
 2. Restart edxapp:
@@ -23,14 +23,14 @@ virtualenv.
     sudo /edx/bin/supervisorctl restart edxapp:
     ```
 
-3. In your course, go to the advanced settings and add the `markdown` module to 
+3. In your course, go to the advanced settings and add the `markdown` module to
    the "Advanced Module List" like so:
    ```
    [
     "annotatable",
     "videoalpha",
     "openassessment",
-    "mdown"
+    "mdown_ca"
    ]
    ```
 
