@@ -57,7 +57,9 @@ class MarkdownCAXBlock(StudioEditableXBlockMixin, XBlock):
             "footnotes",
             "autolink",
             "strikethrough",
-            "math"
+            "math",
+            "quote",
+            "no-intra-emphasis"
         ],
         scope=Scope.content)
 
